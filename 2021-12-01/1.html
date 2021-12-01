@@ -1,0 +1,93 @@
+<!--
+ * @file: 使用canvas画一个简单的开机动画
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+    .canvas-box{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .canvas-box button {
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="canvas-box">
+    <canvas id="canvas" width="600" height="600">你的浏览器不支持canvas</canvas>
+    <button id="btn">Click the start</button>
+  </div>
+  <script>
+    let canvas = document.querySelector('#canvas')
+    let btn = document.querySelector('#btn')
+    let ctx = canvas.getContext('2d')
+    let rad = Math.PI * 2 / 100
+    let n = 0
+
+    function drawCircleSmall() {
+      ctx.save()
+      ctx.beginPath()
+      ctx.arc(300, 300, 100, 0, 2*Math.PI, false)
+      ctx.strokeStyle="#3eaf7c"
+      ctx.stroke()
+      ctx.closePath()
+      ctx.restore()
+    }
+    function drawCircleBig(n) {
+      ctx.save()
+      ctx.beginPath()
+      ctx.arc(300, 300, 100, -Math.PI/2, -Math.PI/2+ rad*n, false)
+      ctx.strokeStyle="#3eaf7c" 
+      ctx.lineWidth = 4
+      ctx.stroke()
+      ctx.closePath()
+      ctx.restore()
+    }
+
+    function drawText() {
+      ctx.save()
+      ctx.font = "28px sans-serif"
+      ctx.fillText("Hello World", 220, 300)
+      ctx.restore()
+
+
+    }
+
+
+    function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height)
+      drawCircleSmall()
+      setInterval(()=>{
+        if(n < 100){
+          n = n+1;
+          drawCircleBig(n)
+        }else {
+          drawText()
+          return
+        }
+      }, 16)
+    }
+
+    btn.addEventListener('click', function() {
+      draw()
+    })
+    drawCircleSmall()
+  </script>
+</body>
+</html>

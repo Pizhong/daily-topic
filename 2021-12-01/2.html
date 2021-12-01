@@ -1,0 +1,42 @@
+<!--
+ * @file: 你有使用过css的:checked伪类吗？
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #toggle-trigger {
+        display: none;
+    }
+    #toggle-trigger ~ :not(checked) ~  .toggle-item{
+        display: block;
+    }
+    #toggle-trigger:checked  ~  .toggle-item{
+      display: none;
+    }
+    input:checked {
+      height: 50px;
+      width: 50px;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    <input type="radio" checked="checked" value="male" name="gender" /> Male<br>
+    <input type="radio" value="female" name="gender" /> Female<br>
+    <input type="checkbox" checked="checked" value="Bike" /> I have a bike<br>
+    <input type="checkbox" value="Car" /> I have a car 
+  </form>  
+  <div class="toggle">
+    <label for="toggle-trigger">点击显示/隐藏文字</label>
+    <input id="toggle-trigger" type="checkbox" />
+   <p class="toggle-item">
+     111111111111
+   </p>
+ </div>
+</body>
+</html>

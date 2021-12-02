@@ -1,0 +1,33 @@
+<!--
+ * @file: 使用js写一个方法动态移除head里的js引用 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="./3.js"></script>
+</head>
+<body>
+  <script type="text/javascript">
+    /**
+      思路：
+      1、获取head里面的子标签nodeList
+      2、从nodeList获取script标签的索引
+      3、用removeChild()去掉script标签
+    */
+     let head = document.getElementsByTagName('head')[0];
+     let nodeList = head.childNodes
+     console.log(nodeList);
+     for(let i = 0; i < nodeList.length;i++) {
+       if(nodeList[i].tagName == 'SCRIPT') {
+         console.log(nodeList[i].tagName);
+         head.removeChild(head.childNodes[i])
+       }
+     }
+     console.log(nodeList);
+  </script>
+</body>
+</html>

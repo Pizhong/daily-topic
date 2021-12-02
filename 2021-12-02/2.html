@@ -1,0 +1,41 @@
+<!--
+ * @file: 请使用css3实现一个180度的半圆，有投影，hover状态慢慢变透明
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      border: 0;
+    }
+    .box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      background: #1890ff;
+      width: 100px;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      border-top-right-radius: 50px;
+      border-top-left-radius: 50px;
+      box-shadow: 10px 10px 5px #888888;
+      transition: background 2s;
+      -webkit-transition: background 2s;
+    }
+    .box:hover {
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">hover me</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!--
+ * @file: 使用Canvas绘制一颗树 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="600" height="600">你的浏览器不支持canvas</canvas>
+  <script type="text/javascript">
+    // 思路：通过canvas绘画线段的思路，采用递归的方法，不断在原有的线段上继续绘画线段，再加上控制线段延伸角度，从而达到绘画树
+
+    let canvas = document.querySelector('#canvas')
+    let ctx = canvas.getContext('2d')
+    
+    // 定义起始X坐标 
+    let startX = 300
+    // 定义起始X坐标 
+    let startY = 600
+    // 定义树枝的长度
+    let length = 60
+    // 定义树枝的角度
+    let angle = -Math.PI/2
+    // 定义树枝最大延伸角度
+    let maxAngle = (2 * Math.PI) / 4
+    // 定义树枝的层次
+    let depth = 12
+    // 定义树枝的初始宽度
+    let branchWidth = 12
+    // 定义每层最大树枝数
+    let maxBranch  = 3
+    drawTree(startX, startY, length, angle, depth, branchWidth)
+
+    function drawTree(startX, startY, length, angle, depth, branchWidth) {
+      // 定义终点X坐标，终点Y坐标，每层树枝数，树枝层次，树枝长度，树枝延伸角度
+      let endX, endY, subBranches, newDepth,newLength,newAngle
+
+      ctx.beginPath()
+      ctx.moveTo(startX, startY)
+      endX = startX + Math.cos(angle) * length
+      endY = startY + Math.sin(angle) * length
+
+      ctx.lineCap = 'round'
+      ctx.lineWidth = branchWidth
+      ctx.lineTo(endX, endY)
+
+      ctx.strokeStyle = '#b36c2e'
+      ctx.stroke()
+
+      newDepth = depth - 1
+      if (!newDepth) {
+        return
+      }
+      subBranches = (Math.random() * (maxBranch-1)) + 1
+      branchWidth *= 0.7
+      for(var i = 0;i<subBranches;i++) {
+        newLength = length * 0.75 + 0.25 * length *  Math.random()
+        newAngle = angle +  Math.random() * maxAngle - maxAngle * 0.5
+        // 将i层线段的终点位置作为i+1层线段的起点位置
+        drawTree(endX, endY, newLength, newAngle, newDepth, branchWidth);   
+      }
+    }
+  </script>
+</body>
+</html>

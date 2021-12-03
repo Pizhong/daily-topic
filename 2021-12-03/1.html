@@ -18,8 +18,7 @@
       if (!snake.getContext) return;
       let ctx = snake.getContext('2d')
 
-      ctx.save()
-      ctx.lineWidth = 20;
+      ctx.lineWidth = 24;
       ctx.lineJoin = 'round';
       ctx.lineCap = 'round';
       ctx.beginPath();
@@ -30,12 +29,18 @@
       ctx.lineTo(250, 50 + 1 * 50);
       ctx.lineTo(300, 50 + 1 * 50);
       ctx.lineTo(350, 50 + 1 * 50);
-      ctx.restore()
-
-      
-      ctx.arc(320, 80, 10, 0, 2*Math.PI, false)
       ctx.strokeStyle = '#81c995'
       ctx.stroke();
+      
+      ctx.beginPath()
+      ctx.fillStyle='#000'
+      ctx.arc(340, 94, 4, 0, 2*Math.PI, false)
+      ctx.fill()
+
+      ctx.beginPath()
+      ctx.fillStyle='#000'
+      ctx.arc(340, 106, 4, 0, 2*Math.PI, false)
+      ctx.fill()
     }
     drawSnake()
   </script>

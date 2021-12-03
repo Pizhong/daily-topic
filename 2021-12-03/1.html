@@ -1,0 +1,43 @@
+<!--
+ * @file: 使用canvas画一条蛇
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="snake" width="600" height="600">你的浏览器不支持canvas</canvas>
+  <script type="text/javascript">
+
+    function drawSnake(){
+      let snake = document.querySelector('#snake')
+      if (!snake.getContext) return;
+      let ctx = snake.getContext('2d')
+
+      ctx.save()
+      ctx.lineWidth = 20;
+      ctx.lineJoin = 'round';
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(50, 50 + 1 * 50);
+      ctx.lineTo(100, 100 + 1 * 50);
+      ctx.lineTo(150, 50 + 1 * 50);
+      ctx.lineTo(200, 100 + 1 * 50);
+      ctx.lineTo(250, 50 + 1 * 50);
+      ctx.lineTo(300, 50 + 1 * 50);
+      ctx.lineTo(350, 50 + 1 * 50);
+      ctx.restore()
+
+      
+      ctx.arc(320, 80, 10, 0, 2*Math.PI, false)
+      ctx.strokeStyle = '#81c995'
+      ctx.stroke();
+    }
+    drawSnake()
+  </script>
+</body>
+</html>

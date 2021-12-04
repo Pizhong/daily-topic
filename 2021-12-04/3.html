@@ -1,0 +1,37 @@
+<!--
+ * @file: 如何禁用在浏览器打开控制台
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    window.onload = function () {
+      document.onkeydown = function () {
+        var e = window.event || arguments[0];
+        //屏蔽F12
+        if (e.keyCode == 123) {
+    
+          return false;
+          //屏蔽Ctrl+Shift+I
+        } else if ((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {
+    
+          return false;
+          //屏蔽Shift+F10
+        } else if ((e.shiftKey) && (e.keyCode == 121)) {
+          return false;
+        }
+      };
+      //屏蔽右键单击
+      document.oncontextmenu = function () {
+        return false;
+      }
+    }
+  </script>
+</body>
+</html>

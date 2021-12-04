@@ -1,0 +1,24 @@
+<!--
+ * @file: 如何使用css将字体变成小型的大写字母
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    // font-variant 属性设置小型大写字母的字体显示文本，
+    // 这意味着所有的小写字母均会被转换为大写，但是所有使用小型大写字体的字母与其余文本相比，其字体尺寸更小。
+  </script>
+  <style>
+  p.normal {font-variant: normal}
+  p.small {font-variant: small-caps}
+  </style>
+</head>
+<body>
+  <p class="normal">Hello Words</p>
+  <p class="small">Hello Words</p>
+</body>
+</html>

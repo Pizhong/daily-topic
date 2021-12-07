@@ -1,0 +1,26 @@
+<!--
+ * @file: 如何在canvas中显示图片
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="711" height="400">你的浏览器不支持canvas</canvas>
+  <script type="text/javascript">
+    let canvas = document.querySelector('#canvas')
+    let ctx = canvas.getContext('2d')
+
+    let img = new Image()
+    img.src = 'https://raw.githubusercontent.com/Pizhong/PicGoImg/main/202112071628233.jpg'
+    img.onload = function() {
+      ctx.drawImage(img, 0, 0, 711, 400)
+    }
+
+  </script>
+</body>
+</html>

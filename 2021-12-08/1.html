@@ -1,0 +1,34 @@
+<!--
+ * @file: 使用canvas实现同心圆环
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas" width="600" height="600">你的浏览器不支持canvas</canvas>
+  <script type="text/javascript">
+    window.onload = function() {
+      let canvas = document.querySelector('#canvas')
+      if (!canvas.getContext) return;
+      let ctx = canvas.getContext('2d')
+
+      ctx.beginPath()
+      ctx.arc(300, 300, 100, 0, 2*Math.PI, false)
+      ctx.strokeStyle="#3eaf7c"
+      ctx.stroke()
+      ctx.closePath()
+
+      ctx.beginPath()
+      ctx.arc(300, 300, 150, 0, 2*Math.PI, false)
+      ctx.strokeStyle="#24aa8d"
+      ctx.stroke()
+      ctx.closePath()
+    }
+  </script>
+</body>
+</html>

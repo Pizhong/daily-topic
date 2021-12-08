@@ -1,0 +1,40 @@
+<!--
+ * @file: 你有使用过box-reflect属性吗？说说你对它的理解
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /*
+      box-reflect可以反射元素原本绘制的内容，可以理解为可以生成镜像元素  
+    */
+    .reflect-box {
+      width: 300px;
+      height: 300px;
+      /* 基本使用 below | above | left | right 代表下上左右。 */
+      -webkit-box-reflect: below;
+
+      /* 设置倒影距离 */
+      /* -webkit-box-reflect: below 10px; */
+
+      /* 设置倒影虚实 */
+      /* -webkit-box-reflect: below 2px linear-gradient(transparent, rgba(0, 0, 0, .5)); */
+    }
+    .reflect-box img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="reflect-box">
+    <img src="https://raw.githubusercontent.com/Pizhong/PicGoImg/main/202112081426941.jpg">
+  </div>
+</body>
+</html>

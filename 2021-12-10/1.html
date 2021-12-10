@@ -1,0 +1,53 @@
+<!--
+ * @file: 使用canvas生成一张名片
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="card" width="400" height="200">你的浏览器不支持canvas</canvas>
+  <script type="text/javascript">
+    window.onload = function() {
+      let card = document.querySelector('#card')
+      if(!card.getContext) return
+      let ctx = card.getContext('2d')
+
+      let img = new Image()
+      img.src = './img/avatar.jpg'
+      ctx.strokeStyle = '#999'
+      ctx.strokeRect(0, 0, 400, 200)
+
+      
+      ctx.save()
+      img.onload = () => {
+        ctx.beginPath()
+        ctx.arc(60, 60, 40,  0, Math.PI * 2, false)
+        ctx.clip()
+        ctx.drawImage(img, 20, 20, 80, 80)
+        ctx.stroke()
+        ctx.restore()
+      }
+
+      ctx.font = "26px sans-serif"
+      ctx.fillText("姓名：", 150, 60)
+      ctx.fillText("周星星", 240, 60)
+      ctx.fillText("爱好：", 150, 100)
+      ctx.fillText("写代码", 240, 100)
+      ctx.fillText("无厘头有限公司", 110, 160)
+    }
+  </script>
+</body>
+</html>

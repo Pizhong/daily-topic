@@ -1,0 +1,47 @@
+<!--
+ * @file: 如何屏蔽掉页面的翻译功能
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 300px;
+      height: 200px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      overflow: hidden;
+    }
+    .box .c1 {
+      width: 500px;
+      height: 500px;
+      background: #009999;
+      border-radius: 50%;
+      left: -100px;
+      top: 0;
+      position: absolute;
+    }
+    .box .c2 {
+      width: 1500px;
+      height: 1500px;
+      background: #fff;
+      border-radius: 50%;
+      left: -600px;
+      top: 80%;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="c1"></div>
+    <div class="c2"></div>
+  </div>
+</body>
+</html>

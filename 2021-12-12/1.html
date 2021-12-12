@@ -1,0 +1,174 @@
+<!--
+ * @file: 使用canvas画一个米字格布局，并可以在上面写字
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style type="text/css">
+    #div1 {
+      width: 400px;
+      height: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="div1">
+    <canvas width="600" height="600" id="cs">你的浏览器不支持canvas!</canvas>
+  </div>
+
+  <script type="text/javascript">
+    var oCanvas = document.getElementById('cs');
+    var isMouseDown = false;
+    var strokeColor = 'black';
+    var lastLoc = {
+      x: 0, y: 0
+    }; 
+    if (oCanvas.getContext) {
+      var ctx = oCanvas.getContext('2d'),
+        l = 0,
+        w = oCanvas.width,
+        half = w / 2,
+        span = 5; //每条虚线的实线部分长度为5
+
+      ctx.strokeStyle = '#FF0000';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(1, 1, w - 2, w - 2);
+
+      //依次调用看效果!
+      // drawReal(ctx);
+      drawUnReal(ctx);
+    }
+
+    //画实线
+    function drawReal(ctx) {
+      ctx.save();
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+
+      //横线
+      ctx.moveTo(0, half);
+      ctx.lineTo(w, half);
+
+      //竖线
+      ctx.moveTo(half, 0);
+      ctx.lineTo(half, w);
+
+      //交叉线1
+      ctx.moveTo(0, 0);
+      ctx.lineTo(w, w);
+
+      //交叉线2
+      ctx.moveTo(0, w);
+      ctx.lineTo(w, 0);
+
+      ctx.stroke();
+      ctx.closePath();
+      ctx.restore();
+    }
+
+    //画虚线,兼容性没问题！
+    function drawUnReal(ctx) {
+      ctx.save();
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, half);
+      l = w / 5; //横线路径
+      for (var i = 0; i < l; i += 2) {
+        ctx.lineTo(i * span, half);
+        ctx.moveTo((i + 1) * span, half);
+      }
+
+      //竖线路径
+      ctx.moveTo(half, 0);
+      for (var i = 0; i < l; i += 2) {
+        ctx.lineTo(half, i * span);
+        ctx.moveTo(half, (i + 1) * span);
+      }
+
+      ctx.translate(half, half);
+      ctx.rotate(45 * Math.PI / 180);
+
+      ctx.moveTo(0, -half * Math.SQRT2);
+
+      l = Math.ceil(w * Math.SQRT2 / 5);
+
+      //交叉线1
+      for (var i = 0; i < l; i += 2) {
+        ctx.lineTo(0, -half * Math.SQRT2 + i * span);
+        ctx.moveTo(0, -half * Math.SQRT2 + (i + 1) * span);
+      }
+
+      ctx.rotate(90 * Math.PI / 180);
+      ctx.moveTo(0, -half * Math.SQRT2);
+
+      //交叉线2
+      for (var i = 0; i < l; i += 2) {
+        ctx.lineTo(0, -half * Math.SQRT2 + i * span);
+        ctx.moveTo(0, -half * Math.SQRT2 + (i + 1) * span);
+      }
+
+      //统一描边节省性能！
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function windowToCanvas(x, y) {
+      var bbox = oCanvas.getBoundingClientRect(); return {
+        x: Math.round(x - bbox.left), y: Math.round(y - bbox.top)
+      }
+    }
+    function beginStroke(point) {
+      isMouseDown = true; 
+      lastLoc = windowToCanvas(point.x, point.y)
+    }
+
+  function endStroke() { 
+    isMouseDown = false; 
+  }
+
+  function moveStroke(point) { 
+      var curLoc = windowToCanvas(point.x, point.y); 
+      var curTimestamp = new Date().getTime(); 
+      var lineWidth = 12
+      ctx.beginPath(); 
+      ctx.moveTo(lastLoc.x, lastLoc.y); 
+      ctx.lineTo(curLoc.x, curLoc.y); 
+      ctx.strokeStyle = strokeColor; 
+      ctx.lineWidth = lineWidth; 
+      ctx.lineCap = 'round'; 
+      ctx.lineJoin = 'round'; 
+      ctx.stroke(); 
+      lastLoc = curLoc; 
+      lastTimestamp = curTimestamp; 
+      lastLineWidth = lineWidth; 
+    }
+
+
+
+    oCanvas.onmousedown = function (e) {
+      e.preventDefault(); 
+      beginStroke({
+        x: e.clientX, y: e.clientY
+      })
+    }
+    oCanvas.onmouseup = function (e) {
+      e.preventDefault(); endStroke()
+    }
+    oCanvas.onmouseout = function (e) {
+      e.preventDefault(); endStroke()
+    }
+    oCanvas.onmousemove = function (e) {
+      e.preventDefault(); if (isMouseDown) {
+        moveStroke({
+          x: e.clientX, y: e.clientY
+        })
+      }
+    }
+  </script>
+</body>
+
+</html>

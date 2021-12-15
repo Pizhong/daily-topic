@@ -1,0 +1,37 @@
+<!--
+ * @file: 使用canvas制作几座相连的山峰
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas">你的浏览器不支持canvas</canvas>
+  <script type="text/javascript">
+    function draw(){
+      var canvas = document.getElementById('canvas');
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      if (!canvas.getContext) return;
+      var ctx = canvas.getContext("2d");
+
+      ctx.beginPath();
+      ctx.moveTo(50, 300);
+      ctx.lineTo(100, 200);
+      ctx.lineTo(150, 300);
+      ctx.lineTo(200, 200);
+      ctx.lineTo(250, 300);
+      ctx.lineTo(300, 200);
+      ctx.lineTo(350, 300);
+
+      ctx.fill()
+
+    }
+    draw();
+  </script>
+</body>
+</html>

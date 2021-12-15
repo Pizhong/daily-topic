@@ -1,0 +1,20 @@
+<!--
+ * @file: 说说你对css中font-display的理解，它有什么作用
+-->
+
+<!-- font-display是@font-face的一个声明，用于控制字体下载完成之前的渲染行为。
+font-display将字体下载过程划分为三个阶段。
+1. 首先是字体阻塞阶段（font block period）。在此期间，如果字体未完成加载，则尝试使用它的任何元素，必须以不可见的后备字体形式呈现；否则正常使用该字体。
+
+2. 紧接着字体阻塞阶段的是字体交换阶段（font swap period）。在此期间，如果字体未完成加载，则尝试使用它的任何元素，必须使用后备字体进行渲染；否则正常使用该字体。
+
+3. 紧接着是字体故障阶段（font failure period）。此时若字体未完成加载，则将其标记为下载失败，并使用常规后备字体；否则正常使用该字体。
+
+理解以上三个阶段，根据字体是否下载成功、何时下载完成等情况，就可以可以使用font-display来决定如何渲染字体了。
+
+例子：
+@font-face {
+  font-family: 'Arvo';
+  font-display: auto;
+  src: local('Arvo'), url(https://fonts.gstatic.com/s/arvo/v9/rC7kKhY-eUDY-ucISTIf5PesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+} -->

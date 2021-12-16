@@ -1,0 +1,46 @@
+<!--
+ * @file: 使用Canvas制作一个渐变背景的动画特效
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas">你的浏览器不支持canvas</canvas>
+  <script type="text/javascript">
+    window.onload = function() {
+      let canvas = document.querySelector('#canvas')
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+      if(!canvas.getContext) return
+      let ctx = canvas.getContext('2d')
+      let i = 0
+      draw()
+
+      function draw() {
+        // console.log(i);
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
+        let grd = ctx.createLinearGradient(0,0,canvas.width,0)
+        grd.addColorStop(i,'#57c7da')
+        grd.addColorStop(i+0.1,'#40c0d5')
+        grd.addColorStop(i+0.2,'#2db8cf')
+        grd.addColorStop(i+0.3,'#2db8cf')
+        grd.addColorStop(i+0.4,'#40c0d5')
+        grd.addColorStop(i+0.5,'#57c7da')
+        ctx.fillStyle = grd
+        ctx.fillRect(0,0,canvas.width,canvas.height)
+        i+=0.005
+        if(i >= 0.5) {
+          i = 0
+        }
+
+        requestAnimationFrame(draw)
+      }
+    }
+  </script>
+</body>
+</html>

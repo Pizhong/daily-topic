@@ -1,0 +1,35 @@
+<!--
+ * @file: 使用css画一个圆圈，里面带一个x的图标
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 200px;
+      background-color: #009999;
+      border-radius: 50%;
+      box-shadow: 10px 10px 16px #999;
+      font-size: 48px;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="circle">
+    <span>X</span>
+  </div>
+</body>
+</html>

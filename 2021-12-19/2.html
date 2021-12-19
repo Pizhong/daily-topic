@@ -1,0 +1,32 @@
+<!--
+ * @file 如何使用CSS设置动画的填充模式？
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      width: 150px;
+      height: 200px;
+      position: relative;
+      background: red;
+      animation-name: myanim;
+      animation-duration: 2s;
+      /*  animation-fill-mode 属性规定当动画不播放时（当动画完成时，或当动画有一个延迟未开始播放时），要应用到元素的样式。 */
+      animation-fill-mode: forwards;
+    }
+    @keyframes myanim {
+      from {left: 0px; background-color: green;}
+      to {left: 200px; background-color: blue;}
+    }
+  </style>
+</head>
+<body>
+  <div></div>
+</body>
+</html>
+

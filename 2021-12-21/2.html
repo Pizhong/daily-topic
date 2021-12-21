@@ -1,0 +1,38 @@
+<!--
+ * @file: 你有使用过css的text-underline-offset属性吗？说说它的作用
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input {
+      width: 280px;
+    }
+
+    span {
+      text-decoration: underline;
+      font-size: 200%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>text-underline-offset属性可以用来设置下划线偏移位置。</h1>
+  <input id="range" type="range" min="-2" max="2" step="0.1" value="0">
+  <output>0em</output>
+
+  <p><span id="target">下划线位置是？zhangxinxu.com</span></p>
+  <script type="text/javascript">
+    range.addEventListener('input', function () {
+      this.nextElementSibling.textContent = this.value + 'em';
+      target.style.textUnderlineOffset = this.value + 'em';
+    });
+  </script>
+</body>
+
+</html>

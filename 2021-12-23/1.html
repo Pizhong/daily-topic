@@ -1,0 +1,50 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-23 22:41:16
+ * @LastEditTime: 2021-12-23 22:49:50
+ * @LastEditors: Please set LastEditors
+ * @Description:  网站延迟加载图像有哪些方法
+ * @FilePath: \daily-topic\2021-12-23\1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      min-height: 100px;
+      /* ...more styles here */
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 1、设置图片的loading属性为lazy -->
+  <img src="img.jpg" loading="lazy" alt="">
+
+  <!-- 2、使用Intersection Observer API进行延迟加载 -->
+  <img src="images/loading.gif" data-src="images/1.png">
+  <script type="text/javascript">
+    function query(selector) {
+      return Array.from(document.querySelectorAll(selector));
+    }
+    var io = new IntersectionObserver(function (items) {
+      items.forEach(function (item) {
+        var target = item.target;
+        if (target.getAttribute('src') == 'images/loading.gif') {
+          target.src = target.getAttribute('data-src');
+        }
+      })
+    });
+    query('img').forEach(function (item) {
+      io.observe(item);
+    });
+  </script>
+  <!-- 3、使用lozad.js库 -->
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-24 22:39:43
+ * @LastEditTime: 2021-12-24 23:08:34
+ * @LastEditors: Please set LastEditors
+ * @Description: canvas制作一个切了一半的西瓜
+ * @FilePath: \daily-topic\2021-12-24\1.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas">你的浏览器不支持canvas</canvas>
+  <script type="text/javascript">
+    let canvas = document.querySelector('#canvas')
+    canvas.width = 600
+    canvas.height = 600
+    let ctx = canvas.getContext('2d')
+    drawCircleSmall()
+    drawCircleBig()
+    drawSeed()
+    function drawCircleSmall() {
+      ctx.save()
+      ctx.beginPath()
+      ctx.arc(canvas.width/2,  canvas.height/2, 100, 0, 2*Math.PI, false)
+      ctx.strokeStyle="#ec7277"
+      ctx.stroke()
+      ctx.fillStyle='#ec7277'
+      ctx.fill()
+      ctx.closePath()
+      ctx.restore()
+    }
+    function drawCircleBig() {
+      ctx.save()
+      ctx.beginPath()
+      ctx.arc(canvas.width/2,  canvas.height/2, 108, 0, 2*Math.PI, false)
+      ctx.strokeStyle="#079554" 
+      ctx.lineWidth = 10
+      ctx.stroke()
+      ctx.closePath()
+      ctx.restore()
+    }
+
+    function drawSeed() {
+      for(i=0;i<10;i++) {
+        let radX = Math.floor((Math.random()*100)+250)
+        let radY = Math.floor((Math.random()*100)+250)
+        console.log(radX,radY);
+        ctx.save()
+        ctx.beginPath()
+        ctx.arc(radX,radY, 6, 0, 2*Math.PI, false) 
+        ctx.stroke()
+        ctx.fill()
+        ctx.closePath()
+        ctx.restore()
+      }
+    }
+  </script>
+</body>
+</html>
